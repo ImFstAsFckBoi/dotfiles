@@ -1,0 +1,35 @@
+[user]
+	name = profile1
+	email = profile1@profile.com
+
+    
+[profile1]
+	name = profile1
+	email = profile1@profile.com
+
+
+[profile2]
+	name = profile2
+	email = profile2@profile.com
+
+
+[alias]
+	commits = !git whoami && read && git commit
+	
+	
+    raw-name  = !git config --global user.name
+    raw-email = !git config --global user.email
+
+    name  = !echo 'Name:   ' $(git raw-name) && printf ''
+    email = !echo 'Email:  ' $(git raw-email) && printf ''
+
+    whoami = !git name && git email
+
+    profile	= !\
+        "if [ ! $1 ]; then echo ERR: empty argument! usage: && echo '$ git set-profile <NAME>' && exit 1; fi" &&\
+        "if [ ! \"$(git config --get-regex $1)\" ]; then echo ERR: no user ´$1´ found && exit 1; fi" &&\
+        git raw-name "\"$(git config $1.name)\"" &&\
+        git raw-email "$(git config $1.email)" &&\
+        echo 'Profile set:' $1 &&\
+        git whoami &&\
+        exit 0 &&
