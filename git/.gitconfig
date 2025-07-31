@@ -1,0 +1,64 @@
+[includeIf "gitdir:~/repos/Personal/"]
+     path = ~/.config/git/.personal.gitconfig
+
+[includeIf "gitdir:~/repos/Drakryggen/"]
+     path = ~/.config/git/.drakryggen.gitconfig
+
+[includeIf "gitdir:~/repos/LiU/"]
+     path = ~/.config/git/.liu.gitconfig
+
+
+[filter "lfs"]
+    clean       = git-lfs clean -- %f
+    smudge      = git-lfs smudge -- %f
+    process     = git-lfs filter-process
+    required
+
+[core]
+    editor = nano
+    hooksPath = /home/gamer/.config/git/corehooks/
+
+    compression = 9
+    whitespace = error
+    preloadindex = true
+	autocrlf = false
+
+
+[alias]
+    edit = !$(git config core.editor) ~/.gitconfig
+    commits = !git whoami && echo "Press Enter to confirm or Ctrl+C to cancel!" && read && git commit
+    
+    undo = reset HEAD~1
+    graph = log --all --decorate --oneline --graph
+    ui = !lazygit
+    
+    c = commits
+    l = log
+    g = graph
+    s = status
+   
+    
+    whoami = !chid whoami
+
+[init]
+    defaultBranch = master
+    templatedir = ~/.config/git/templatedir
+
+[credential]
+    helper = store
+
+[pull]
+    rebase = true
+    default = current
+
+[push]
+    autoSetupRemote = true
+    default = current
+
+[rebase]
+    missigCommitsCheck = warn
+
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all

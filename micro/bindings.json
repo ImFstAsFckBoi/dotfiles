@@ -1,0 +1,17 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "Alt-d": "command:goto-definition",
+    "Alt-f": "command:format",
+    "Alt-h": "command:hover",
+    "Alt-k": "command:hover",
+    "Alt-r": "command:find-references",
+    "Alt-x": "CommandMode",
+    "Ctrl-Alt-t": "NextTab",
+    "Ctrl-p": "command:fzf",
+    "CtrlSpace": "command:lspcompletion",
+    "CtrlUnderscore": "lua:comment.comment",
+    "F1": "command:cheat",
+    "F6": "command-edit:gorename ",
+    "F7": "command:lsp",
+    "F8": "command:format"
+}
