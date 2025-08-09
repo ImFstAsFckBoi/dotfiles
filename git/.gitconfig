@@ -27,18 +27,17 @@
 [alias]
     edit = !$(git config core.editor) ~/.gitconfig
     commits = !git whoami && echo "Press Enter to confirm or Ctrl+C to cancel!" && read && git commit
-    
+
     undo = reset HEAD~1
     graph = log --all --decorate --oneline --graph
     ui = !lazygit
-    
+
     c = commits
     l = log
     g = graph
     s = status
-   
-    
-    whoami = !chid whoami
+ 
+    whoami = "!echo \"$(git config user.name) <$(git config user.email)>\""
 
 [init]
     defaultBranch = master
