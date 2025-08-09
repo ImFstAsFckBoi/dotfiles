@@ -13,6 +13,15 @@
 (global-set-key (kbd "C-x C-,") 'emoji-insert)
 (global-set-key (kbd "C-p") 'search-backward)
 (global-set-key (kbd "C-n") 'search-forward)
+(global-set-key (kbd "C-x C-x") 'rotate)
+
+
+;; My own arrow keys
+(global-set-key (kbd "M-i") 'previous-line)
+(global-set-key (kbd "M-k") 'next-line)
+(global-set-key (kbd "M-j") 'left-char)
+(global-set-key (kbd "M-l") 'right-char)
+
 
 ;; Unset annoying keybinds
 (global-unset-key (kbd "<mouse-2>"))

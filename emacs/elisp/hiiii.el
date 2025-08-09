@@ -10,3 +10,5 @@
 
 (setq initial-scratch-message
       (get-string-from-file hiiii-page-file))
+
+(setq initial-major-mode 'org-mode)

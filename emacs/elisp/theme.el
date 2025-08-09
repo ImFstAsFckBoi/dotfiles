@@ -1,32 +1,33 @@
 ;;; Theme, font & looks
 
+;; Function definitions
+
+(defun patch-whitespace-color ()
+  "show whitespace"
+  (set-face-attribute 'whitespace-space nil :foreground "#52494e" :background nil)
+  (set-face-attribute 'whitespace-tab nil :foreground "#52494e" :background nil))
+
+(defun patch-eldoc-theme ()
+  "Custom elbox-doc setup"
+  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-body nil :background (color-lighten-name (face-attribute 'default :background) 50)))
+  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :background (color-lighten-name (face-attribute 'default :background) 50)))
+  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :height 140)))
+
+(defun patch-theme ()
+  (patch-whitespace-color))
+
+(advice-add 'load-theme :after (lambda (&rest _) (patch-theme)))
+(advice-add 'consult-theme :after (lambda (&rest _) (patch-theme)))
+
 (use-package all-the-icons :ensure t)
 
-
-(use-package adwaita-dark-theme
-  :ensure t
-  :config
-  (load-theme 'adwaita-dark t)
-  (eval-after-load 'diff-hl #'adwaita-dark-theme-diff-hl-fringe-bmp-enable)
-  (eval-after-load 'flymake #'adwaita-dark-theme-flymake-fringe-bmp-enable)
-  (adwaita-dark-theme-arrow-fringe-bmp-enable))
-
-
-;;;; Custom elbox-doc setup
-(eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-body nil :background "gray19"))
-(eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :background "gray19"))
-(eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :height 140))
-
-(set-face-attribute 'default nil :height 140)
-(set-face-attribute 'mode-line-buffer-id nil :foreground "#ffbcd8")
-
-(add-to-list 'default-frame-alist `(font . "Adwaita Mono"))
-(set-fontset-font t #x1F5BF (font-spec :family "Noto Sans Symbols 2") nil 'prepend)
-
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-;; (add-to-list 'default-frame-alist `(font . "monospace"))
-;; (add-to-list 'default-frame-alist `(font . "ComicShannsMono Nerd Font Mono"))
-;; (add-to-list 'default-frame-alist `(font . "Iosevka Nerd Font"))
+;; (use-package adwaita-dark-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'adwaita-dark t)
+;;   (eval-after-load 'diff-hl #'adwaita-dark-theme-diff-hl-fringe-bmp-enable)
+;;   (eval-after-load 'flymake #'adwaita-dark-theme-flymake-fringe-bmp-enable)
+;;   (adwaita-dark-theme-arrow-fringe-bmp-enable))
 
 
 ;;;; Render whitespace
@@ -42,16 +43,32 @@
       '((space-mark   ?\     [?\u00B7] [?.])
         (tab-mark     ?\t    [?\u21E5 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
 
-                                        ; set foreground (characters) to light gray
-(set-face-attribute 'whitespace-space nil :foreground "#52494e" :background nil)
-(set-face-attribute 'whitespace-tab nil :foreground "#52494e" :background nil)
+
+(use-package ef-themes
+  :ensure t
+  :config (load-theme 'ef-dream))
+
+
+(global-hl-line-mode)
+
+;;(set-face-attribute 'mode-line-buffer-id nil :foreground "#ffbcd8")
+(add-to-list 'default-frame-alist `(font . "Iosevka-14"))
+(set-fontset-font t #x1F5BF (font-spec :family "Noto Sans Symbols 2") nil 'prepend)
+;; (add-hook 'after-make-frame-functions (lambda () (set-face-attribute 'default nil :height 140)))
+
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist `(font . "monospace"))
+;; (add-to-list 'default-frame-alist `(font . "ComicShannsMono Nerd Font Mono"))
+;; (add-to-list 'default-frame-alist `(font . "Iosevka Nerd Font"))
 
 
 ;; Other appearance packages
 (use-package mood-line
   :ensure t
+  :config
   ;; Enable mood-line
-  :config (mood-line-mode)
+  (mood-line-mode)
 
   ;; Use pretty Fira Code-compatible glyphs
   :custom
@@ -70,10 +87,23 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :hook (emacs-lisp-mode . rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package indent-guide
   :ensure t
   :config (indent-guide-global-mode))
+
+
+(use-package ligature
+  :ensure t
+  :config
+  ;; Enable all Iosevka ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->" "<--->" "<---->" "<!--"
+                                       "<==" "<===" "<=" "=>" "=>>" "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+                                       "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+                                       ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:" "=:" "<******>" "++" "+++"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
 
 

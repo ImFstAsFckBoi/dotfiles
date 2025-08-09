@@ -11,13 +11,11 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
 
-
-
 (defun include-config (file)
-  "Load ELisp config file from config directory"
+  "Load ELisp config file from elsip directory"
   (condition-case err
       (load-file (expand-file-name (concat file ".el") (concat user-emacs-directory "elisp")))
-    (error (message "Error loading %s: %s" file err))))
+    (error (warn "Error loading %s: %s" file err))))
 
 
 ;; Basic Emacs setup
@@ -28,12 +26,12 @@
 (scroll-bar-mode -1)
 (xterm-mouse-mode 1)
 (blink-cursor-mode -1)
+(delete-selection-mode)
+(electric-indent-mode -1)
 (pixel-scroll-precision-mode)
 (fset 'yes-or-no-p 'y-or-n-p)
-(electric-pair-mode electric-quote-mode)
 (global-display-line-numbers-mode)
-(electric-indent-mode -1)
-(delete-selection-mode)
+(electric-pair-mode electric-quote-mode)
 
 (setq-default tab-width 4)
 (setq-default truncate-lines -1)
@@ -41,6 +39,8 @@
 (setopt indent-tabs-mode nil)
 (setopt scroll-step 1)
 (setopt inhibit-startup-message t)
+(setopt delete-by-moving-to-trash t)
+(setopt vc-follow-symlinks t)
 
 
 ;; Load PATH env var
@@ -49,13 +49,14 @@
   :config  (exec-path-from-shell-initialize))
 
 
-;; Basic packages
+;; Random package stuff
+(use-package diminish :ensure t)
+
 (use-package which-key
   :ensure t
   :diminish which-key-mode
   :config (which-key-mode))
 
-(use-package diminish :ensure t)
 
 (use-package kkp
   :if (not (display-graphic-p))
@@ -70,25 +71,32 @@
   :ensure t
   :config (eros-mode 1))
 
+(use-package dired-x
+  :bind (:map dired-mode-map ("C-f" . dired-x-find-file)))
+
+
 ;; Load files
-(include-config "theme")
 (include-config "functions")
+(include-config "theme")
 (include-config "keybinds")
 (include-config "spellcheck")
 (include-config "tempo")
-(include-config "webjump-cfg")
+(include-config "git")
 
-;; setup language specifics
-(include-config "languages")
 
-;; modern ui
+;; misc package configs
 (include-config "corfu-cfg")
 (include-config "consult-cfg")
 (include-config "embark-cfg")
+(include-config "webjump-cfg")
+(include-config "org-cfg")
 
-;; eglot eldoc and dape
+
+;; lsp debugger and language configs
+(include-config "languages")
 (include-config "lsp")
 (include-config "debugger")
 
 ;; homescreen
 (include-config "hiiii")  ; ✨ hiiii! :3
+

@@ -3,12 +3,18 @@
 (use-package consult
   :ensure t
   :bind
-  ("C-f" . consult-line)
-  ("C-s" . save-buffer) ; beacause we rebind search
   ("C-x b" . consult-buffer)
   ("C-x p g" . consult-ripgrep)
   ("C-:" . :)
+  ("C-s" . save-buffer)
+  ("C-f" . consult-line-dwim)
   :config
+
+  (defun consult-line-dwim ()
+    (interactive)
+    (consult-line (if (not (region-active-p)) ""
+                    (buffer-substring-no-properties (region-beginning) (region-end)))))
+
   (defalias 'errors 'consult-flymake "Search flymake errors")
   (defalias ': 'consult-goto-line "Goto Line number")
   (setq xref-show-xrefs-function #'consult-xref
