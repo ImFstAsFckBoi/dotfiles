@@ -1,12 +1,29 @@
 ;; Git integrations
 
 
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t)
 
 
 (use-package diff-hl
   :ensure t
-  :config (global-diff-hl-mode))
+  :custom (diff-hl-draw-borders nil)
+  :config
+  (custom-set-faces
+   '(diff-hl-change ((t (:background "#2b67b1"))))
+   '(diff-hl-insert ((t (:background "#7ccd7c"))))
+   '(diff-hl-delete ((t (:background "#ee6363")))))
+  (global-diff-hl-mode)
+  (diff-hl-dired-mode)
+  (diff-hl-flydiff-mode)
+  (with-eval-after-load 'magit
+    (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
-;; TODO: figure out
-;; (use-package blamer :ensure t)
+
+(use-package blamer
+  :ensure t
+  :custom ((blamer-idle-time 0.25)
+           (blamer-author-formatter "✎ %s ")
+           (blamer-datetime-formatter "[%s] ")
+           (blamer-type 'visual))
+  :config (global-blamer-mode 1))
