@@ -14,7 +14,7 @@
    '(diff-hl-insert ((t (:background "#7ccd7c"))))
    '(diff-hl-delete ((t (:background "#ee6363")))))
   (global-diff-hl-mode)
-  (diff-hl-dired-mode)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (diff-hl-flydiff-mode)
   (with-eval-after-load 'magit
     (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
