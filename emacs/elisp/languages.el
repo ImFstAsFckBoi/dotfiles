@@ -18,7 +18,9 @@
 
 (use-package markdown-mode
   :ensure t
-  :config (setq markdown-command "cmark"))
+  :bind (:map markdown-mode-map (("C-c C-<up>" . markdown-outline-previous)
+                                 ("C-c C-<down>" . markdown-outline-next)))
+  :config (when (executable-find "cmark") (setq markdown-command "cmark")))
 
 (use-package pyvenv-auto
   :ensure t

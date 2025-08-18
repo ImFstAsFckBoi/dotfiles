@@ -65,10 +65,16 @@
              (lambda (path) (string-remove-prefix user-emacs-directory path))
              (all-config-files))))))
 
-
 (defun find-file-dwim ()
   "Find recent files or project files"
   (interactive)
   (if (project-current)
       (call-interactively 'project-find-file)
     (call-interactively 'consult-recent-file)))
+
+(defun outline-toggle-entry ()
+  "Toggle show/hide outline entry"
+  (interactive)
+  (if (eq (outline--cycle-state) 'hide-all)
+      (outline-show-entry)
+    (outline-hide-entry)))

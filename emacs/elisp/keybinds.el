@@ -2,7 +2,6 @@
 
 
 
-(global-set-key (kbd "C-x f") 'find-file-dwim)
 (global-set-key (kbd "C-x z") 'suspend-frame)
 (global-set-key (kbd "C-x m") 'switch-to-minibuffer)
 (global-set-key (kbd "C-z") 'undo)
@@ -13,7 +12,12 @@
 (global-set-key (kbd "C-x C-,") 'emoji-insert)
 (global-set-key (kbd "C-p") 'search-backward)
 (global-set-key (kbd "C-n") 'search-forward)
+
+;; Make sure functions is loaded
+(load-library "functions")
 (global-set-key (kbd "C-x C-x") 'rotate)
+(global-set-key (kbd "C-x f") 'find-file-dwim)
+(global-set-key (kbd "C-<tab>") 'outline-toggle-entry)
 
 
 ;; My own arrow keys
@@ -23,7 +27,7 @@
 (global-set-key (kbd "M-l") 'right-char)
 
 
-;; Unset annoying keybinds
+;;; Unset annoying keybinds
 (global-unset-key (kbd "<mouse-2>"))
 (global-unset-key (kbd "<mouse-3>"))
 (global-unset-key (kbd "C-q"))
@@ -51,10 +55,9 @@
   ("M-<down>" . move-text-down)
   ("M-<up>" . move-text-up))
 
-
-(use-package "multiple-cursors"
+(use-package multiple-cursors
   :ensure t
   :bind
   ("M-S-<up>" . 'mc/mark-previous-lines)
-  ("M-S-<down>" . 'mc/mark-next-lines))
-
+  ("M-S-<down>" . 'mc/mark-next-lines)
+  :config (keymap-unset mc/keymap "<return>"))
