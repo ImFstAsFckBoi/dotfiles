@@ -11,11 +11,6 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
 
-(defun include-config (file)
-  "Load ELisp config file from elsip directory"
-  (condition-case err
-      (load-file (expand-file-name (concat file ".el") (concat user-emacs-directory "elisp")))
-    (error (warn "Error loading %s: %s" file err))))
 
 
 ;; Basic Emacs setup
@@ -29,18 +24,21 @@
 (delete-selection-mode)
 (electric-indent-mode -1)
 (pixel-scroll-precision-mode)
-(fset 'yes-or-no-p 'y-or-n-p)
 (global-display-line-numbers-mode)
+(minibuffer-depth-indicate-mode t)
 (electric-pair-mode electric-quote-mode)
 
-(setq-default tab-width 4)
-(setq-default truncate-lines -1)
-(setq-default indent-tabs-mode nil)
-(setopt indent-tabs-mode nil)
 (setopt scroll-step 1)
-(setopt inhibit-startup-message t)
-(setopt delete-by-moving-to-trash t)
+(setq-default tab-width 4)
+(setopt help-window-select t)
 (setopt vc-follow-symlinks t)
+(setopt indent-tabs-mode nil)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq-default truncate-lines -1)
+(setopt inhibit-startup-message t)
+(setq-default indent-tabs-mode nil)
+(setopt delete-by-moving-to-trash t)
+(setopt enable-recursive-minibuffers t)
 
 
 ;; Load PATH env var
@@ -75,28 +73,35 @@
   :bind (:map dired-mode-map ("C-f" . dired-x-find-file)))
 
 
+(defun safe-load (lib)
+  (condition-case err
+      (load-library lib)
+    (error (warn "Error when loading %s: %s" lib err))))
+
+
+
 ;; Load files
-(include-config "functions")
-(include-config "theme")
-(include-config "keybinds")
-(include-config "spellcheck")
-(include-config "tempo")
-(include-config "git")
+(safe-load "functions")
+(safe-load "theme")
+(safe-load "keybinds")
+(safe-load "spellcheck")
+(safe-load "tempo")
+(safe-load "git")
 
 
 ;; misc package configs
-(include-config "corfu-cfg")
-(include-config "consult-cfg")
-(include-config "embark-cfg")
-(include-config "webjump-cfg")
-(include-config "org-cfg")
+(safe-load "corfu-cfg")
+(safe-load "consult-cfg")
+(safe-load "embark-cfg")
+(safe-load "webjump-cfg")
+(safe-load "org-cfg")
 
 
 ;; lsp debugger and language configs
-(include-config "languages")
-(include-config "lsp")
-(include-config "debugger")
+(safe-load "languages")
+(safe-load "lsp")
+(safe-load "debugger")
 
 ;; homescreen
-(include-config "hiiii")  ; ✨ hiiii! :3
+(safe-load "hiiii")  ; ✨ hiiii! :3
 

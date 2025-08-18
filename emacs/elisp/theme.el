@@ -79,6 +79,7 @@
 (use-package golden-ratio
   :ensure t
   :diminish golden-ratio-mode
+  :custom((golden-ratio-exclude-modes '(reb-mode)))
   :config (golden-ratio-mode 1))
 
 (use-package solaire-mode
