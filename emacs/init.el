@@ -81,6 +81,7 @@
 
 
 ;; Load files
+(safe-load "mktemp")
 (safe-load "functions")
 (safe-load "theme")
 (safe-load "keybinds")

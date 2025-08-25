@@ -8,14 +8,11 @@
   (dotimes (_ n) (insert (concat msg " "))))
 
 
-(defun mktemp ()
-  "Open a /tmp file in a new buffer"
-  (interactive)
-  (find-file (string-trim (shell-command-to-string "mktemp"))))
-
-
 ;; cat Makefile | perl -n -E 'say $1 if /^([^\.^%^\s][^%^\s]*):( [^%^\s]*)?/gm'
-(defalias 'make 'imake)
+
+(use-package imake
+  :ensure t
+  :config (defalias 'make 'imake))
 
 
 (defun insert-list-reverse (list)
