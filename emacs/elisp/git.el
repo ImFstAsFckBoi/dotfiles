@@ -22,8 +22,6 @@
 
 (use-package blamer
   :ensure t
-  :custom ((blamer-idle-time 0.25)
-           (blamer-author-formatter "✎ %s ")
-           (blamer-datetime-formatter "[%s] ")
-           (blamer-type 'visual))
-  :config (global-blamer-mode 1))
+  :bind ("C-x v b" . (lambda () (interactive) (blamer-show-commit-info 'selected)))
+  :custom ((blamer-author-formatter "✎ %s ")
+           (blamer-datetime-formatter "[%s] ")))
