@@ -1,6 +1,9 @@
 [includeIf "gitdir:~/repos/Personal/"]
      path = ~/.config/git/.personal.gitconfig
 
+[includeIf "gitdir:~/repos/Other/"]
+     path = ~/.config/git/.personal.gitconfig
+
 [includeIf "gitdir:~/repos/Drakryggen/"]
      path = ~/.config/git/.drakryggen.gitconfig
 
