@@ -1,6 +1,5 @@
 ;; Git integrations
 
-
 (use-package magit
   :ensure t)
 
@@ -21,7 +20,14 @@
 
 
 (use-package blamer
-  :ensure t
-  :bind ("C-x v b" . (lambda () (interactive) (blamer-show-commit-info 'selected)))
-  :custom ((blamer-author-formatter "✎ %s ")
-           (blamer-datetime-formatter "[%s] ")))
+  :vc (:url "https://github.com/ImFstAsFckBoi/blamer.el" :rev :newest)
+  :bind ("C-x v b" . #'blamer-show-posframe-commit-info)
+  :custom ((blamer-idle-time 0.5)
+           (blamer-type 'echo-area)
+           (blamer-show-avatar-p t)
+           (blamer-author-formatter "✎ %s ")
+           (blamer-datetime-formatter "[%s] ")
+           (blamer-echo-area-inset 3)
+           (blamer-echo-area-strip-face-attributes '(:background :foreground))
+           (blamer-max-commit-message-length (window-body-width (minibuffer-window))))
+  :config (global-blamer-mode))
