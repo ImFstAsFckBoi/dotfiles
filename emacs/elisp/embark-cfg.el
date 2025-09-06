@@ -4,22 +4,11 @@
 (use-package embark
   :ensure t
   :bind (("C-." . embark-act)
-         ("C-," . embark-act-noquit)
          ("C-;" . embark-dwim)
          ("C-h B" . embark-bindings))
 
-  :config  (defun embark-act-noquit ()
-             "Run action but don't quit the minibuffer afterwards."
-             (interactive)
-             (let ((embark-quit-after-action nil))
-               (embark-act)))
+  :config
 
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none))))
-  
   (defun embark-jinx-correct (_)
     "Correct spelling using jinx"
     (call-interactively 'jinx-correct))
@@ -32,10 +21,11 @@
     :doc "Keymap for jinx marked words."
     "n" #'jinx-next
     "p" #'jinx-previous
-    "l" #'jinx-languages
-    "RET" #'jinx-correct)
+    "l" #'embark-jinx-languages
+    "RET" #'embark-jinx-correct)
 
-
+  (fset 'embark-jinx-map embark-jinx-map)
+  
   (with-eval-after-load 'jinx
     (embark-define-overlay-target jinx category (eq %p 'jinx-overlay))
     (add-to-list 'embark-target-finders 'embark-target-jinx-at-point)
