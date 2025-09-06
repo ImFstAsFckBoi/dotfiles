@@ -20,7 +20,7 @@
 
 
 (use-package blamer
-  :vc (:url "https://github.com/ImFstAsFckBoi/blamer.el" :rev :newest)
+  :ensure t
   :bind ("C-x v b" . #'blamer-show-posframe-commit-info)
   :custom ((blamer-idle-time 0.5)
            (blamer-type 'echo-area)
