@@ -21,10 +21,10 @@
 
 
 ;; My own arrow keys
-(global-set-key (kbd "M-i") 'previous-line)
-(global-set-key (kbd "M-k") 'next-line)
-(global-set-key (kbd "M-j") 'left-char)
-(global-set-key (kbd "M-l") 'right-char)
+(global-set-key (kbd "M-i") (mimic-global-key "<up>" nil t))
+(global-set-key (kbd "M-k") (mimic-global-key "<down>" nil t))
+(global-set-key (kbd "M-j") (mimic-global-key "<left>" nil t))
+(global-set-key (kbd "M-l") (mimic-global-key "<right>" nil t))
 
 
 ;;; Unset annoying keybinds

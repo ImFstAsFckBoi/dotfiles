@@ -1,4 +1,4 @@
-;; Some custom functions
+;; Some custom functions -*- lexical-binding: t; -*-
 
 (defun msgwall (msg n)
   "Open a buffer with a wall of repeating phrase"
@@ -75,3 +75,12 @@
   (if (eq (outline--cycle-state) 'hide-all)
       (outline-show-entry)
     (outline-hide-entry)))
+
+(defun mimic-global-key (key &optional map static)
+  ""
+  (let ((key (kbd key))
+        (map (or map global-map)))
+    (if static
+        (lookup-key map key)
+      (lambda () (interactive)
+        (call-interactively (lookup-key map key))))))
