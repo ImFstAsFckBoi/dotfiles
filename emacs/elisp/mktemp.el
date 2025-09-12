@@ -2,7 +2,7 @@
 
 (setq mktemp--prog-lang-ext-alist '(("Text" . "txt")
                                     ("Json" . "json") ("Yaml" . "yaml") ("XML" . "xml")
-                                    ("Markdown" . "md") ("Org" . "org")
+                                    ("Markdown" . "md") ("Org" . "org") ("Typst" . "typ") ("LaTeX" . "tex")
                                     ("Bash" . "sh") ("Shell script" . "sh")
                                     ("C" . "c") ("C++" . "cc") ("C header" . "h") ("C++ header" . "hh")
                                     ("Javascript" . "js") ("Typescript" . "ts") ("HTML" . "html") ("CSS" . "css")

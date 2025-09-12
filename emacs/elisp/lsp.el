@@ -10,7 +10,13 @@
 (use-package eglot
   :ensure t
   :bind ("<f2>" . eglot-rename)
-  :hook ( eglot-mode . sideline-mode))
+  :hook ( eglot-mode . sideline-mode)
+  :config (with-eval-after-load 'typst-ts-mode
+            (add-to-list 'eglot-server-programs
+                         `((typst-ts-mode) .
+                           ,(eglot-alternatives `(,typst-ts-lsp-download-path
+                                                  "tinymist"
+                                                  "typst-lsp"))))))
 
 
 (add-hook 'eglot-managed-mode-hook #'imenu-add-menubar-index)

@@ -38,3 +38,9 @@
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(black isort)))
 
+
+
+
+(add-hook 'text-mode-hook (lambda ()
+                            (toggle-truncate-lines nil)
+                            (toggle-word-wrap t)))
