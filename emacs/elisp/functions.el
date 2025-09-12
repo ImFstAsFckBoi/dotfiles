@@ -84,3 +84,13 @@
         (lookup-key map key)
       (lambda () (interactive)
         (call-interactively (lookup-key map key))))))
+
+
+(defmacro mc-def-repeat-patch (function)
+  (let ((f-name (intern (format "mc--%s--repeat-patched" function))))
+    `(defun ,f-name ()
+       (interactive)
+       (call-interactively ',function)
+       (let ((last-repeatable-command ',function))
+         (mc/execute-command-for-all-fake-cursors
+          #'repeat)))))

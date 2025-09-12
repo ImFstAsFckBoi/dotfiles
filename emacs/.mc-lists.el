@@ -3,53 +3,59 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        beatp-left-to-boundary
         beatp-delete-left-to-boundary
         beatp-dwim-kill
         beatp-dwim-previous-line
         beatp-dwim-save
+        beatp-left-to-boundary
         beatp-right-to-boundary
         beginning-of-defun
         c-electric-brace
         c-electric-paren
         corfu-complete
+        corfu-insert
         corfu-next
+        corfu-previous
         corfu-quit
-        corfu-complete
+        electric-pair-delete-pair
         end-of-defun
+        eros-eval-last-sexp
         haskell-indentation-common-electric-command
         indent-for-tab-command
         keyboard-escape-quit
         kill-region
         killer-yank
         lsp-ui-doc--handle-mouse-movement
+        mc--test
         promela-open-delimiter
         ryanmarcus/backward-kill-word
-        search-forward
         shit
         tab-region
         untab-region
-        vscp/delete-to-boundry-backward
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        beat+/select-word-or-next-match
         beatp-select-around-word-or-next-match
         beatp-select-word-or-next-match
         consult-buffer
-        corfu-previous
+        consult-line-dwim
         counsel-M-x
+        describe-keymap
         eglot
         handle-switch-frame
         make
         markdown-outdent-or-delete
+        mc--search-forward
+        mc--test--2
+        mc--test-3
         mc/mark-next-lines
         mc/mark-previous-lines
         mouse-set-region
+        pixel-scroll-precision
         previous-buffer
+        redraw-display
         save-buffers-kill-terminal
         scroll-bar-toolkit-scroll
-        vscp/C-d
-        vscp/select-word-or-next-match
+        search-forward
         ))
