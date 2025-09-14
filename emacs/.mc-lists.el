@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         beatp-delete-left-to-boundary
+        beatp-delete-right-to-boundary
         beatp-dwim-kill
         beatp-dwim-previous-line
         beatp-dwim-save
@@ -12,11 +13,6 @@
         beginning-of-defun
         c-electric-brace
         c-electric-paren
-        corfu-complete
-        corfu-insert
-        corfu-next
-        corfu-previous
-        corfu-quit
         electric-pair-delete-pair
         end-of-defun
         eros-eval-last-sexp
@@ -26,7 +22,6 @@
         kill-region
         killer-yank
         lsp-ui-doc--handle-mouse-movement
-        mc--test
         promela-open-delimiter
         ryanmarcus/backward-kill-word
         shit
@@ -40,19 +35,31 @@
         beatp-select-word-or-next-match
         consult-buffer
         consult-line-dwim
+        corfu--mc--insert
+        corfu-complete
+        corfu-insert
+        corfu-next
+        corfu-previous
+        corfu-quit
+        corfu-test
         counsel-M-x
+        describe-key
         describe-keymap
         eglot
         handle-switch-frame
         make
         markdown-outdent-or-delete
+        mc--search-backward--repeat-patched
         mc--search-forward
+        mc--search-forward--repeat-patched
         mc--test--2
         mc--test-3
         mc/mark-next-lines
         mc/mark-previous-lines
         mouse-set-region
+        move-text-up
         pixel-scroll-precision
+        pixel-scroll-start-momentum
         previous-buffer
         redraw-display
         save-buffers-kill-terminal

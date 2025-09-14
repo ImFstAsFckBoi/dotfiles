@@ -1,14 +1,34 @@
-;;; Corfu
+;;; Corfu -*- lexical-binding: t -*-
+
 (use-package corfu
   :ensure t
+  :bind (:map corfu-map ("RET" . corfu--mc--insert))
   :custom (corfu-cycle t)
   (corfu-auto t)
   (corfu-auto-prefix 2)
   (corfu-auto-delay 0.0)
   (corfu-quit-at-boundary 'separator)
   (corfu-echo-documentation 0.1)
-  :config (global-corfu-mode)
-  (corfu-history-mode))
+  :config
+  (global-corfu-mode)
+  (corfu-history-mode)
+
+
+  (defun corfu--mc--insert-impl ()
+    (let* ((prefix-len (cdr corfu--input))
+           (cand (nth corfu--index corfu--candidates))
+           (suffix (substring cand prefix-len nil)))
+      (corfu-quit)
+      (mc/execute-command-for-all-cursors
+       (lambda () (interactive) (insert suffix)))))
+
+  (defun corfu--mc--insert ()
+    (interactive)
+    (if (not multiple-cursors-mode)
+        (call-interactively #'corfu-insert)
+      (corfu--mc--insert-impl)))
+
+  )
 
 (use-package corfu-popupinfo
   :after corfu
