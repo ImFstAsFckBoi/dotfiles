@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 from argparse import ArgumentParser
+from collections.abc import Sequence
 from functools import partial
 from pathlib import Path
-from typing import Sequence
 
 Link = tuple[Path, Path]
 
@@ -70,7 +70,7 @@ def undo_pkg(path: str):
 def get_pkg_links(path: str) -> list[Link]:
     pkg_path = Path(path)
     file_path = pkg_path / ".links"
-    out = []
+    out: list[Link] = []
 
     with open(str(file_path), "r") as f:
         for line in f:
@@ -171,7 +171,7 @@ if __name__ == "__main__":
     try:
         exit(main())
     except Exception as e:
-        print(f"Error occurred ({type(e).__name__}): {" ".join(map(str, e.args))}")
+        print(f"Error occurred ({type(e).__name__}): {' '.join(map(str, e.args))}")
 
         DEBUG = False
 
