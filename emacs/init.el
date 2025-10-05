@@ -5,6 +5,9 @@
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
 (setq auto-save-file-name-transforms  `((".*" "~/.config/emacs/saves/" t)))
 
+(require 'package)
+(require 'use-package)
+
 ;; Package setup
 (use-package package
   :config
@@ -37,9 +40,15 @@
 (setq-default truncate-lines -1)
 (setopt inhibit-startup-message t)
 (setq-default indent-tabs-mode nil)
+(setopt eval-expression-print-level nil)
+(setopt eval-expression-print-length nil)
 (setopt delete-by-moving-to-trash t)
 (setopt enable-recursive-minibuffers t)
+(setq minibuffer-prompt-properties
+      '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 
+
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
 ;; Load PATH env var
 (use-package exec-path-from-shell
@@ -79,6 +88,7 @@
   :custom ((dired-subtree-line-prefix "  =>  "))
   :bind (:map dired-mode-map ("TAB" . dired-subtree-toggle)))
 
+;; (keymap-set shell-command-mode-map (kbd "q") 'quit-window)
 
 (defun safe-load (lib)
   (condition-case err
