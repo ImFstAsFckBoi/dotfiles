@@ -25,7 +25,7 @@ alias xd=chid
 alias mkvenv="python3 -m venv .venv"
 alias py=python3
 alias edit=$EDITOR
-alias emacs="automacs -t"
+alias emacs="automacs -nw"
 
 export PATH="/home/gamer/.local/bin:$PATH"
 export PATH="/home/gamer/.turso:$PATH"
