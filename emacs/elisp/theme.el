@@ -64,17 +64,17 @@
 
 
 ;; Other appearance packages
-(use-package mood-line
-  :ensure t
-  :config
-  ;; Enable mood-line
-  (mood-line-mode)
+;; (use-package mood-line
+;;   :ensure t
+;;   :config
+;;   ;; Enable mood-line
+;;   (mood-line-mode)
 
-  ;; Use pretty Fira Code-compatible glyphs
-  :custom
-  (mood-line-glyph-alist mood-line-glyphs-fira-code)
-  (mood-line-show-eol-style t)
-  (mood-line-format mood-line-format-default-extended))
+;;   ;; Use pretty Fira Code-compatible glyphs
+;;   :custom
+;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
+;;   (mood-line-show-eol-style t)
+;;   (mood-line-format mood-line-format-default-extended))
 
 (use-package golden-ratio
   :ensure t
