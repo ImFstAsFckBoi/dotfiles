@@ -1,22 +1,16 @@
-;; eglot-lsp and dape-dap stuff
+;;; lsp.el --- eglot and eldoc setup
 
-(use-package eldoc-box
-  :ensure t
-  :diminish eldoc-box-hover-at-point-mode
-  :hook (eldoc-mode . (lambda ()
-                        (if (display-graphic-p)
-                            (eldoc-box-hover-at-point-mode)))))
+;; eglot-lsp and dape-dap stuff
 
 (use-package eglot
   :ensure t
-  :bind ("<f2>" . eglot-rename)
-  :hook ( eglot-mode . sideline-mode)
-  :config (with-eval-after-load 'typst-ts-mode
-            (add-to-list 'eglot-server-programs
-                         `((typst-ts-mode) .
-                           ,(eglot-alternatives `(,typst-ts-lsp-download-path
-                                                  "tinymist"
-                                                  "typst-lsp"))))))
+  :bind ("<f2>" . eglot-rename))
+
+(use-package consult-eglot
+  :ensure t
+  :after (consult eglot)
+  :bind ("C-O" . consult-eglot-symbols)
+  :config (defalias 'symbols 'consult-eglot-symbols "Search workspace symbols"))
 
 
 (add-hook 'eglot-managed-mode-hook #'imenu-add-menubar-index)
@@ -28,3 +22,5 @@
     :vc (:url "https://github.com/jdtsmith/eglot-booster")
     :after  eglot
     :config (eglot-booster-mode)))
+
+;;; lsp.el ends here

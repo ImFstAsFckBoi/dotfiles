@@ -109,7 +109,7 @@
 
 ;; misc package configs
 (safe-load "corfu-cfg")
-(safe-load "consult-cfg")
+(safe-load "modern-ui")
 (safe-load "embark-cfg")
 (safe-load "webjump-cfg")
 (safe-load "org-cfg")
