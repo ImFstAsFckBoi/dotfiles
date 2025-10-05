@@ -2,13 +2,14 @@
 
 (use-package corfu
   :ensure t
+  :demand t
   :bind (:map corfu-map ("RET" . corfu--mc--insert))
-  :custom (corfu-cycle t)
-  (corfu-auto t)
-  (corfu-auto-prefix 2)
-  (corfu-auto-delay 0.0)
-  (corfu-quit-at-boundary 'separator)
-  (corfu-echo-documentation 0.1)
+  :custom ((corfu-cycle t)
+           (corfu-auto t)
+           (corfu-auto-prefix 2)
+           (corfu-auto-delay 0.0)
+           (corfu-quit-at-boundary 'separator)
+           (corfu-echo-documentation 0.1))
   :config
   (global-corfu-mode)
   (corfu-history-mode)
@@ -26,9 +27,7 @@
     (interactive)
     (if (not multiple-cursors-mode)
         (call-interactively #'corfu-insert)
-      (corfu--mc--insert-impl)))
-
-  )
+      (corfu--mc--insert-impl))))
 
 (use-package corfu-popupinfo
   :after corfu
@@ -48,3 +47,9 @@
   :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+(use-package cape
+  :ensure t
+  :config
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file))
