@@ -3,13 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        beatp-delete-left-to-boundary
-        beatp-delete-right-to-boundary
-        beatp-dwim-kill
-        beatp-dwim-previous-line
-        beatp-dwim-save
-        beatp-left-to-boundary
-        beatp-right-to-boundary
+        beat-delete-left-to-boundary
+        beat-delete-right-to-boundary
+        beat-dwim-kill
+        beat-dwim-move-beginning-of-line
+        beat-dwim-previous-line
+        beat-dwim-save
+        beat-left-to-boundary
+        beat-right-to-boundary
         beginning-of-defun
         c-electric-brace
         c-electric-paren
@@ -31,8 +32,10 @@
 
 (setq mc/cmds-to-run-once
       '(
-        beatp-select-around-word-or-next-match
-        beatp-select-word-or-next-match
+        beat-mark-around-boundary-or-next-match
+        beat-mark-around-word-or-next-match
+        beat-select-around-word-or-next-match
+        beat-select-word-or-next-match
         consult-buffer
         consult-line-dwim
         corfu--mc--insert

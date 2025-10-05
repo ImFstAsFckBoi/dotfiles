@@ -38,18 +38,19 @@
 (when (daemonp)
   (global-set-key (kbd "C-x C-c") 'delete-frame))
 
-(use-package beat+
-  :ensure t
-  :vc (:url "https://github.com/ImFstAsFckBoi/beatp")
-  :bind
-  ("C-w" . beatp-dwim-kill)
-  ("M-w" . beatp-dwim-save)
-  ("C-d" . beatp-select-around-word-or-next-match)
-  ("C-<right>" . beatp-right-to-boundary)
-  ("C-<left>" . beatp-left-to-boundary)
-  ("C-<delete>" . beatp-delete-right-to-boundary)
-  ("C-<backspace>" . beatp-delete-left-to-boundary)
-  ("<up>" . beatp-dwim-previous-line))
+(use-package beat
+  ;; :ensure t
+  ;; :vc (:url "https://github.com/ImFstAsFckBoi/beat")
+  :load-path "~/repos/Personal/beat/"
+  :bind (("C-w" . beat-dwim-kill)
+         ("M-w" . beat-dwim-save)
+         ("C-a" . beat-dwim-move-beginning-of-line)
+         ("C-d" . beat-mark-around-boundary-or-next-match)
+         ("C-<right>" . beat-right-to-boundary)
+         ("C-<left>" . beat-left-to-boundary)
+         ("C-<delete>" . beat-delete-right-to-boundary)
+         ("C-<backspace>" . beat-delete-left-to-boundary)
+         ("<up>" . beat-dwim-previous-line)))
 
 
 (use-package "move-text"
