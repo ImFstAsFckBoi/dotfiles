@@ -12,7 +12,9 @@
                                     ("Ada specification" . "ads") ("Ada body" . "adb")
                                     ("C#" . "cs")
                                     ("Rust" . "rs")
-                                    ("Go" . "go")))
+                                    ("Go" . "go")
+                                    ("Julia" . "jl")
+                                    ("Common Lisp" . "cl")))
 
 
 (defun mktemp--prog-lang-ext-annotate (cand)
