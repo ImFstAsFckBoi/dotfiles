@@ -94,3 +94,30 @@
        (let ((last-repeatable-command ',function))
          (mc/execute-command-for-all-fake-cursors
           #'repeat)))))
+
+(defun read-src-and-dst-file (prompt1 prompt2)
+  "Read a two files with prompt PROMPT1 and PROMPT2 and then return both as pair."
+  (let* ((src (read-file-name prompt1))
+         (dst (read-file-name prompt2 (file-name-directory src))))
+    (cons src dst)))
+
+(defun mv ()
+  "Move a file."
+  (interactive)
+  (let ((src-dst (read-src-and-dst-file "Move: " "To: ")))
+    (shell-command (format "mv %s %s" (car src-dst) (cdr src-dst)))))
+
+(defun cp ()
+  "Copy a file."
+  (interactive)
+  (let ((src-dst (read-src-and-dst-file "Copy: " "To: ")))
+    (shell-command (format "cp %s %s" (car src-dst) (cdr src-dst)))))
+
+(defun rm ()
+  "Remove a file."
+  (interactive)
+  (let ((file (read-file-name "Remove: ")))
+    (shell-command (format "rm %s" file))))
+
+(provide 'functions)
+;;; functions.el ends here
