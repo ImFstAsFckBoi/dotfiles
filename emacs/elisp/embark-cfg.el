@@ -8,6 +8,13 @@
          ("C-h B" . embark-bindings))
 
   :config
+  
+  
+
+  (with-eval-after-load 'eglot
+    (defun rename-identifier (_) "Rename identifier using eglot." (call-interactively #'eglot-rename))
+    (keymap-set embark-identifier-map (kbd "R") #'rename-identifier))
+
 
   (defun embark-jinx-correct (_)
     "Correct spelling using jinx"
