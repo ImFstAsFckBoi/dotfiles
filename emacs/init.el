@@ -31,6 +31,7 @@
 (minibuffer-depth-indicate-mode t)
 (electric-pair-mode electric-quote-mode)
 
+(setopt auto-window-vscroll nil)
 (setopt scroll-step 1)
 (setq-default tab-width 4)
 (setopt help-window-select t)
@@ -44,6 +45,7 @@
 (setopt eval-expression-print-length nil)
 (setopt delete-by-moving-to-trash t)
 (setopt enable-recursive-minibuffers t)
+(setopt ring-bell-function 'ignore)
 (setq minibuffer-prompt-properties
       '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
 
@@ -105,11 +107,11 @@
 (safe-load "spellcheck")
 (safe-load "tempo")
 (safe-load "git")
+(safe-load "modern-ui")
 
 
 ;; misc package configs
 (safe-load "corfu-cfg")
-(safe-load "modern-ui")
 (safe-load "embark-cfg")
 (safe-load "webjump-cfg")
 (safe-load "org-cfg")

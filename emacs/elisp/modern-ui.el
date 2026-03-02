@@ -51,11 +51,13 @@
 
 
 (use-package eldoc
+  :diminish
   :demand t)
 
 (use-package eldoc-box
   :after eldoc
   :ensure t
+  :diminish
   :hook (eldoc-mode . (lambda ()
                         (when (display-graphic-p)
                           (eldoc-box-hover-at-point-mode 1)))))
