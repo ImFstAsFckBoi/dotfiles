@@ -115,6 +115,7 @@
 (safe-load "embark-cfg")
 (safe-load "webjump-cfg")
 (safe-load "org-cfg")
+(safe-load "feat-occult")
 
 
 ;; lsp debugger and language configs
