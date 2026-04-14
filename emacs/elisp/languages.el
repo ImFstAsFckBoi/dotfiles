@@ -46,6 +46,7 @@
 
 
 (use-package typst-ts-mode
+  :ensure t
   :custom (typst-ts-mode-watch-options "--open")
   :hook ((typst-ts-mode . (lambda () (run-hooks 'prog-mode-hook)))))
 
