@@ -6,10 +6,21 @@
 (load custom-file)
 
 
-;; Interpreter performance
+;;; Interpreter performance
+
+;; Set higher limits
 (setq max-lisp-eval-depth 3200) ; cope and seethe
-(setq gc-cons-threshold #x40000000)
-(setq read-process-output-max (* 1024 1024 4))
+(setq gc-cons-threshold (* 1024 1024 1024)) ; 1 GiB
+(setq read-process-output-max (* 1024 1024 4)) ; 4 MiB
+
+;; Disable right-to-left optimizations
+(setq bidi-display-reordering 'left-to-right
+      bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
+;; Stop fontification when typing
+(setq redisplay-skip-fontification-on-input t)
+
 
 ;; Suppress annoying warnings
 (setq byte-compile-warnings '(not obsolete))
