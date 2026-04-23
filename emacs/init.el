@@ -1,34 +1,46 @@
-;; Emacs config
+;;; init.el --- Emacs configuration. -*- lexical-binding: t; -*-
 
 
-;; Setup backup and save files
+;;; Setup backup and save files
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
 (setq auto-save-file-name-transforms  `((".*" "~/.config/emacs/saves/" t)))
 
+
+;;; Package setup
 (require 'package)
 (require 'use-package)
 
-;; Package setup
-(use-package package
-  :config
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize))
+;; Ad MELPA package repo
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
 
 
+;;; Load PATH shell environment
+(use-package exec-path-from-shell
+  :ensure t
+  :config  (exec-path-from-shell-initialize))
 
-;; Basic Emacs setup
-(recentf-mode)
+
+;;; Basic Emacs setup
+
+;; Disable unwanted UI elements
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (tab-bar-mode -1)
 (scroll-bar-mode -1)
-(xterm-mouse-mode 1)
 (blink-cursor-mode -1)
+
+;; Enable wanted UI elements
 (delete-selection-mode)
-(electric-indent-mode -1)
 (pixel-scroll-precision-mode)
-(global-display-line-numbers-mode)
 (minibuffer-depth-indicate-mode t)
+(global-display-line-numbers-mode)
+
+
+(recentf-mode)
+(xterm-mouse-mode 1)
+(electric-indent-mode -1)
 (electric-pair-mode electric-quote-mode)
 
 (setopt auto-window-vscroll nil)
@@ -52,14 +64,9 @@
 
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
-;; Load PATH env var
-(use-package exec-path-from-shell
-  :ensure t
-  :config  (exec-path-from-shell-initialize))
-
-
 ;; Random package stuff
 (use-package diminish :ensure t)
+
 
 (use-package which-key
   :ensure t
@@ -80,49 +87,37 @@
   :ensure t
   :config (eros-mode 1))
 
-(use-package dired-x
-  :after dired
-  :bind (:map dired-mode-map ("C-f" . dired-x-find-file)))
-
-(use-package dired-subtree
-  :ensure t
-  :after dired
-  :custom ((dired-subtree-line-prefix "  =>  "))
-  :bind (:map dired-mode-map ("TAB" . dired-subtree-toggle)))
-
-;; (keymap-set shell-command-mode-map (kbd "q") 'quit-window)
-
-(defun safe-load (lib)
+(defun safe-load (f)
+  "Load file F with error without interrupting configuration."
   (condition-case err
-      (load-library lib)
-    (error (warn "Error when loading %s: %s" lib err))))
+      (load-library (concat f))
+    (error (warn "Error when loading feature %s: %s" f err))))
 
+(defun load-feature (feat)
+  "Load configuration feature FEAT."
+  (safe-load (concat "feat-" feat)))
+
+
+(add-to-list 'load-path "~/.config/emacs/elisp/features/")
 
 
 ;; Load files
-(safe-load "mktemp")
 (safe-load "functions")
 (safe-load "theme")
 (safe-load "keybinds")
-(safe-load "spellcheck")
-(safe-load "tempo")
 (safe-load "git")
 (safe-load "modern-ui")
-
-
-;; misc package configs
-(safe-load "corfu-cfg")
-(safe-load "embark-cfg")
-(safe-load "webjump-cfg")
-(safe-load "org-cfg")
-(safe-load "feat-occult")
-
-
-;; lsp debugger and language configs
+(safe-load "cfg-webjump")
+(safe-load "cfg-org")
 (safe-load "languages")
-(safe-load "lsp")
-(safe-load "debugger")
 
-;; homescreen
-(safe-load "hiiii")  ; ✨ hiiii! :3
-
+;;;  Include feature modules
+(load-feature "mktemp")
+(load-feature "tempo")
+(load-feature "spellcheck")
+(load-feature "corfu")
+(load-feature "embark")
+(load-feature "occult")
+(load-feature "lsp")
+(load-feature "debugger")
+(load-feature "hiiii")

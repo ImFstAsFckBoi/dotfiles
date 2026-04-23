@@ -28,6 +28,7 @@
         shit
         tab-region
         untab-region
+        wdired--self-insert
         ))
 
 (setq mc/cmds-to-run-once
@@ -64,6 +65,7 @@
         pixel-scroll-precision
         pixel-scroll-start-momentum
         previous-buffer
+        query-replace
         redraw-display
         save-buffers-kill-terminal
         scroll-bar-toolkit-scroll

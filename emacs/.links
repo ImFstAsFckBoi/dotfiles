@@ -1,2 +1,3 @@
 *.el=~/.config/emacs/%
 elisp/*.el=~/.config/emacs/elisp/%
+elisp/features/*.el=~/.config/emacs/elisp/features/%

@@ -11,7 +11,8 @@
   "Custom elbox-doc setup"
   (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-body nil :background (color-lighten-name (face-attribute 'default :background) 50)))
   (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :background (color-lighten-name (face-attribute 'default :background) 50)))
-  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :height 140)))
+  ;; (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :height 140))
+  )
 
 (defun patch-theme ()
   (patch-whitespace-color))
@@ -51,9 +52,9 @@
 
 (global-hl-line-mode)
 
-;;(set-face-attribute 'mode-line-buffer-id nil :foreground "#ffbcd8")
-(add-to-list 'default-frame-alist `(font . "Iosevka-14"))
-(set-fontset-font t #x1F5BF (font-spec :family "Noto Sans Symbols 2") nil 'prepend)
+;; (set-face-attribute 'mode-line-buffer-id nil :foreground "#ffbcd8")
+;; (add-to-list 'default-frame-alist `(font . "IosevkaNerdFont-14"))
+;; (set-fontset-font t #x1F5BF (font-spec :family "Noto Sans Symbols 2") nil 'prepend)
 ;; (add-hook 'after-make-frame-functions (lambda () (set-face-attribute 'default nil :height 140)))
 
 
