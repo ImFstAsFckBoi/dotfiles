@@ -1,70 +1,22 @@
 
-* ✨ 🌸 Hiiii!! 🌸 ✨ :3
-** 🔧 ACTIONS
-#+begin_src emacs-lisp
-; ✨ recent files!
+;;; ✨ 🌸 Hiiii!! 🌸 ✨ :3
+;; ✨ recent files!
     (open-recent-files)
 
-; 🌸 projects!
+;; 🌸 projects!
     (open-projects)
 
-; 📂 repos!
+;; 🦄 roam!
+    (org-roam-node-find)
+
+;; 📂 repos!
     (open-repos)
 
-; 🔧 configure more!
+;; 🔧 configure more!
     (open-config)
 
-; 📃 update this page!
+;; 📃 update this page!
     (save-hiiii)
 
-; 👋 bye bye!
+;; 👋 bye bye!
     (quit-emacs)
-#+end_src
-
-** 📔 NOTES
-+ Fix this shit
-
-
-
-
-** 🚧 ELISP SCRATCH-PAD
-#+begin_src emacs-lisp
-(emacs-lisp-mode)
-(org-mode)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#+end_src

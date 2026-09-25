@@ -10,7 +10,7 @@
 (require 'package)
 (require 'use-package)
 
-;; Ad MELPA package repo
+;; Add MELPA package repo
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
@@ -19,6 +19,7 @@
 ;;; Load PATH shell environment
 (use-package exec-path-from-shell
   :ensure t
+  :defer nil
   :config  (exec-path-from-shell-initialize))
 
 
@@ -64,24 +65,26 @@
 
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
+
 ;; Random package stuff
 (use-package diminish :ensure t)
 
+(use-package tab-line
+  :defer nil
+  :bind ("C-x t" . global-tab-line-mode)
+  :config
+  (global-tab-line-mode +1)
+  (setq tab-line-separator " ")
+  (setq tab-line-new-button-show nil
+        tab-line-close-button-show nil))
+
+(use-package ls-lisp
+  :config (setopt ls-lisp-dirs-first t))
 
 (use-package which-key
   :ensure t
   :diminish which-key-mode
   :config (which-key-mode))
-
-
-(use-package kkp
-  :if (not (display-graphic-p))
-  :ensure t
-  :config (global-kkp-mode +1))
-
-(use-package xclip
-  :ensure t
-  :config (xclip-mode))
 
 (use-package eros
   :ensure t
@@ -95,11 +98,8 @@
 
 (defun load-feature (feat)
   "Load configuration feature FEAT."
-  (safe-load (concat "feat-" feat)))
-
-
-(add-to-list 'load-path "~/.config/emacs/elisp/features/")
-
+  (let ((load-path (cons "~/.config/emacs/elisp/features/" load-path)))
+    (safe-load (concat "feat-" feat))))
 
 ;; Load files
 (safe-load "functions")
@@ -107,9 +107,11 @@
 (safe-load "keybinds")
 (safe-load "git")
 (safe-load "modern-ui")
+(safe-load "languages")
 (safe-load "cfg-webjump")
 (safe-load "cfg-org")
-(safe-load "languages")
+(safe-load "cfg-dired")
+
 
 ;;;  Include feature modules
 (load-feature "mktemp")
@@ -121,3 +123,4 @@
 (load-feature "lsp")
 (load-feature "debugger")
 (load-feature "hiiii")
+(load-feature "term")

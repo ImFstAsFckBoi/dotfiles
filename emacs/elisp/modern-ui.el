@@ -1,4 +1,4 @@
-;;; modern-ui.el ---  Consult and Vertico, etc setup
+;;; modern-ui.el ---  Consult and Vertico, etc setup. -*- lexical-binding: t; -*-
 
 (use-package consult
   :ensure t

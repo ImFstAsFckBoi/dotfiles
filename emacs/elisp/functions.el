@@ -49,7 +49,8 @@
 
 (defun all-config-files ()
   (append (file-expand-wildcards (concat user-emacs-directory "*.el"))
-          (file-expand-wildcards (concat user-emacs-directory "elisp/*.el"))))
+          (file-expand-wildcards (concat user-emacs-directory "elisp/*.el"))
+          (file-expand-wildcards (concat user-emacs-directory "elisp/features/*.el"))))
 
 (defun find-config ()
   "Open Emacs configurations files"
@@ -118,6 +119,24 @@
   (interactive)
   (let ((file (read-file-name "Remove: ")))
     (shell-command (format "rm %s" file))))
+
+
+
+
+(defun global-zoom-in ()
+  (interactive)
+  (let* ((old (face-attribute 'default :height))
+         (new (+ old 10)))
+    (set-face-attribute 'default nil :height new)
+    (message "Height: %s -> %s" old new)))
+
+
+(defun global-zoom-out ()
+  (interactive)
+  (let* ((old (face-attribute 'default :height))
+         (new (- old 10)))
+    (set-face-attribute 'default nil :height new)
+    (message "Height: %s -> %s" old new)))
 
 (provide 'functions)
 ;;; functions.el ends here

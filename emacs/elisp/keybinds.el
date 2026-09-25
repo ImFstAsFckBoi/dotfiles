@@ -1,4 +1,4 @@
-;; General keybinds
+;; General keybinds. -*- lexical-binding: t; -*-
 
 
 
@@ -53,7 +53,7 @@
          ("<up>" . beat-dwim-previous-line)))
 
 
-(use-package "move-text"
+(use-package move-text
   :ensure t
   :bind
   ("M-<down>" . move-text-down)
@@ -70,3 +70,6 @@
   (mc-def-repeat-patch search-forward)
   (mc-def-repeat-patch search-backward)
   (keymap-unset mc/keymap "<return>"))
+
+(global-set-key (kbd "M-+") #'global-zoom-in)
+(global-set-key (kbd "M--") #'global-zoom-out)

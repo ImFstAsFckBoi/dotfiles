@@ -1,4 +1,5 @@
-;;; language-modes and related stuff
+;;; language-modes and related stuff. -*- lexical-binding: t; -*-
+
 (use-package treesit-auto
   :ensure t
   :config
@@ -57,6 +58,13 @@
                           ,(eglot-alternatives `(,typst-ts-lsp-download-path
                                                  "tinymist")))))
 
+(use-package ocaml-ts-mode
+  :ensure t)
+
+(use-package ocaml-eglot
+  :ensure t
+  ;; :hook (ocaml-eglot-mode . eglot-ensure)
+  )
 
 ;; DONT WORK!
 ;;(use-package websocket :ensure t)

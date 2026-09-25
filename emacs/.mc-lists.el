@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        LaTeX-insert-left-brace
+        TeX-insert-backslash
         beat-delete-left-to-boundary
         beat-delete-right-to-boundary
         beat-dwim-kill
@@ -27,12 +29,15 @@
         ryanmarcus/backward-kill-word
         shit
         tab-region
+        typst-ts-editing-return
         untab-region
         wdired--self-insert
+        yank-rectangle
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        apheleia-mode
         beat-mark-around-boundary-or-next-match
         beat-mark-around-word-or-next-match
         beat-select-around-word-or-next-match
@@ -49,8 +54,11 @@
         counsel-M-x
         describe-key
         describe-keymap
+        dired-find-file
         eglot
+        find-file
         handle-switch-frame
+        help-for-help
         make
         markdown-outdent-or-delete
         mc--search-backward--repeat-patched
@@ -70,4 +78,6 @@
         save-buffers-kill-terminal
         scroll-bar-toolkit-scroll
         search-forward
+        wdired-exit
+        wdired-finish-edit
         ))

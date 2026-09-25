@@ -1,3 +1,4 @@
+;;; hiii --- hiii. -*- lexical-binding: t; -*-
 (defun get-string-from-file (file-path)
   "Return the entire contents of FILE-PATH as a string."
   (with-temp-buffer
@@ -11,4 +12,4 @@
 (setq initial-scratch-message
       (get-string-from-file hiiii-page-file))
 
-(setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'emacs-lisp-mode)

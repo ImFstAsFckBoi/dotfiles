@@ -1,10 +1,13 @@
-;; front page commands
+;; front page commands. -*- lexical-binding: t; -*-
 
 (defun open-recent-files ()
   (call-interactively 'consult-recent-file))
 
 (defun open-projects ()
   (call-interactively 'project-switch-project))
+
+(defun open-roam ()
+  (call-interactively 'org-roam-node-find))
 
 (defun open-config ()
   (dired "~/.config/emacs/"))

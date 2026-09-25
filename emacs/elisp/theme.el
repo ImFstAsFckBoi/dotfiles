@@ -1,26 +1,13 @@
-;;; Theme, font & looks
+;;; Theme, font & looks. -*- lexical-binding: t; -*-
 
 ;; Function definitions
 
-(defun patch-whitespace-color ()
-  "show whitespace"
-  (set-face-attribute 'whitespace-space nil :foreground "#52494e" :background nil)
-  (set-face-attribute 'whitespace-tab nil :foreground "#52494e" :background nil))
-
-(defun patch-eldoc-theme ()
-  "Custom elbox-doc setup"
-  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-body nil :background (color-lighten-name (face-attribute 'default :background) 50)))
-  (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :background (color-lighten-name (face-attribute 'default :background) 50)))
-  ;; (eval-after-load 'eldoc-box '(set-face-attribute 'eldoc-box-border nil :height 140))
-  )
-
-(defun patch-theme ()
-  (patch-whitespace-color))
-
-(advice-add 'load-theme :after (lambda (&rest _) (patch-theme)))
-(advice-add 'consult-theme :after (lambda (&rest _) (patch-theme)))
-
 (use-package all-the-icons :ensure t)
+
+(use-package ef-themes
+  :ensure t
+  :config (load-theme 'ef-dream))
+
 
 ;; (use-package adwaita-dark-theme
 ;;   :ensure t
@@ -32,25 +19,35 @@
 
 
 ;;;; Render whitespace
-(global-whitespace-mode 1)
-(diminish 'global-whitespace-mode)
-(diminish 'whitespace-mode)
+;; (global-whitespace-mode 1)
+;; (diminish 'global-whitespace-mode)
+;; (diminish 'whitespace-mode)
 
-(setq-default whitespace-style
-              '(face spaces tabs newline space-mark tab-mark newline-mark))
+;; (setq-default whitespace-style
+;;               '(face spaces tabs newline space-mark tab-mark newline-mark))
 
-;; Set display styles for space (center dot) tab (|->)
-(setq whitespace-display-mappings
-      '((space-mark   ?\     [?\u00B7] [?.])
-        (tab-mark     ?\t    [?\u21E5 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
+;; ;; Set display styles for space (center dot) tab (|->)
+;; (setq whitespace-display-mappings
+;;       '((space-mark   ?\     [?\u00B7] [?.])
+;;         (tab-mark     ?\t    [?\u21E5 ?\t] [?\u00BB ?\t] [?\\ ?\t])))
 
 
-(use-package ef-themes
-  :ensure t
-  :config (load-theme 'ef-dream))
+(set-face-attribute 'default nil :height 140 :font "adwaita mono")
 
 
 (global-hl-line-mode)
+
+
+(eval-after-load 'tab-line
+  (progn
+    (defun theme-patch--tab-line (&rest _)(let ((color1 (face-attribute 'tab-line :background))
+                                                (color2 (face-attribute 'tab-line-tab-current :background)))
+                                            (set-face-attribute 'tab-line-tab-inactive nil :background color1 :box nil)
+                                            (set-face-attribute 'tab-line-tab-current nil :box `(:line-width (8 . 4) :color ,color2))
+                                            (set-face-attribute 'tab-line-tab-inactive nil :inherit 'tab-line :box nil)))
+    (add-hook 'enable-theme-functions #'theme-patch--tab-line)
+    (theme-patch--tab-line)))
+
 
 ;; (set-face-attribute 'mode-line-buffer-id nil :foreground "#ffbcd8")
 ;; (add-to-list 'default-frame-alist `(font . "IosevkaNerdFont-14"))
