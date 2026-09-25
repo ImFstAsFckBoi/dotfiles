@@ -1,4 +1,4 @@
-;; webjump
+;; webjump .-*- lexical-binding: t; -*-
 
 ;; (use-package "webjump"
 ;;   :ensure t

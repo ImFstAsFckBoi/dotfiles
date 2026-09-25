@@ -1,4 +1,4 @@
-;; Dape debugger
+;; Dape debugger. -*- lexical-binding: t; -*-
 
 
 (use-package dape

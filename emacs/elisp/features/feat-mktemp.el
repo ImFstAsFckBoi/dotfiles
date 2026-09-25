@@ -1,4 +1,4 @@
-
+;;; . -*- lexical-binding: t; -*-
 
 (setq mktemp--prog-lang-ext-alist '(("Text" . "txt")
                                     ("Json" . "json") ("Yaml" . "yaml") ("XML" . "xml")

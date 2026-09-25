@@ -1,4 +1,4 @@
-;;; Embark
+;;; Embark. -*- lexical-binding: t; -*-
 
 
 (use-package embark

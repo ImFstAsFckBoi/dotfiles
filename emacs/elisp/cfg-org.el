@@ -1,4 +1,4 @@
-;;; org-mode configs
+;;; org-mode configs. -*- lexical-binding: t; -*-
 
 (use-package org
   :ensure t

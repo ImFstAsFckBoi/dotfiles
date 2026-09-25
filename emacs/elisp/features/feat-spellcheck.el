@@ -1,4 +1,4 @@
-;; Jinx spellcheck
+;; Jinx spellcheck. -*- lexical-binding: t; -*-
 
 ;; Make sure spellchecker is installed
 (when (executable-find "enchant-2")

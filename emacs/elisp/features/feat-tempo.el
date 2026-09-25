@@ -1,4 +1,4 @@
-;; Tempo/BPM tap pad
+;; Tempo/BPM tap pad. -*- lexical-binding: t; -*-
 
 (defun get-time-at-input (p)
   (read-from-minibuffer p)

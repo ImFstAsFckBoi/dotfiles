@@ -1,4 +1,4 @@
-;;; lsp.el --- eglot and eldoc setup
+;;; lsp.el --- eglot and eldoc setup. -*- lexical-binding: t; -*-
 
 ;; eglot-lsp and dape-dap stuff
 
