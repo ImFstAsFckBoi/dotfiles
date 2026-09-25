@@ -6,7 +6,9 @@
 
 (use-package ef-themes
   :ensure t
-  :config (load-theme 'ef-dream))
+  :config (load-theme (if (let ((h (decoded-time-hour (decode-time))))
+                            (and (>= h 8) (< h 18)))
+                          'ef-day 'ef-dream)))
 
 
 ;; (use-package adwaita-dark-theme
